@@ -10,23 +10,23 @@ class RecipientListView(ListView):
     model = Recipient
 
 
-class RecipientDetailView(ListView):
+class RecipientDetailView(DetailView):
     model = Recipient
 
 
-class RecipientCreateView(ListView):
-    model = Recipient
-    fields = ('email', 'name', 'comment')
-    success_url = reverse_lazy('newsletter:recipient_list')
-
-
-class RecipientUpdateView(ListView):
+class RecipientCreateView(CreateView):
     model = Recipient
     fields = ('email', 'name', 'comment')
     success_url = reverse_lazy('newsletter:recipient_list')
 
 
-class RecipientDeleteView(ListView):
+class RecipientUpdateView(UpdateView):
+    model = Recipient
+    fields = ('email', 'name', 'comment')
+    success_url = reverse_lazy('newsletter:recipient_list')
+
+
+class RecipientDeleteView(DeleteView):
     model = Recipient
     success_url = reverse_lazy('newsletter:recipient_list')
 
@@ -37,23 +37,23 @@ class MessageListView(ListView):
     model = Message
 
 
-class MessageDetailView(ListView):
+class MessageDetailView(DetailView):
     model = Message
 
 
-class MessageCreateView(ListView):
-    model = Message
-    fields = ('head', 'body')
-    success_url = reverse_lazy('newsletter:message_list')
-
-
-class MessageUpdateView(ListView):
+class MessageCreateView(CreateView):
     model = Message
     fields = ('head', 'body')
     success_url = reverse_lazy('newsletter:message_list')
 
 
-class MessageDeleteView(ListView):
+class MessageUpdateView(UpdateView):
+    model = Message
+    fields = ('head', 'body')
+    success_url = reverse_lazy('newsletter:message_list')
+
+
+class MessageDeleteView(DeleteView):
     model = Message
     success_url = reverse_lazy('newsletter:message_list')
 
@@ -64,23 +64,23 @@ class NewsLetterListView(ListView):
     model = NewsLetter
 
 
-class NewsLetterDetailView(ListView):
+class NewsLetterDetailView(DetailView):
     model = NewsLetter
 
 
-class NewsLetterCreateView(ListView):
-    model = NewsLetter
-    fields = ('message', 'recipient')
-    success_url = reverse_lazy('newsletter:newsletter_list')
-
-
-class NewsLetterUpdateView(ListView):
+class NewsLetterCreateView(CreateView):
     model = NewsLetter
     fields = ('message', 'recipient')
     success_url = reverse_lazy('newsletter:newsletter_list')
 
 
-class NewsLetterDeleteView(ListView):
+class NewsLetterUpdateView(UpdateView):
+    model = NewsLetter
+    fields = ('message', 'recipient')
+    success_url = reverse_lazy('newsletter:newsletter_list')
+
+
+class NewsLetterDeleteView(DeleteView):
     model = NewsLetter
     fields = ('message', 'recipient')
     success_url = reverse_lazy('newsletter:newsletter_list')
