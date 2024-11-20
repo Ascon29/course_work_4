@@ -1,5 +1,5 @@
 {% extends 'newsletter/base.html' %}
-{% block title %}Получатель{% endblock %}
+{% block title %}Рассылка{% endblock %}
 
 {% block content %}
 
@@ -17,10 +17,10 @@
                             {% if object %}
                             Сохранить
                             {% else %}
-                            Добавить
+                            Создать
                             {% endif %}
                         </button>
-                        <a class="btn btn-outline-primary" href="{% url 'newsletter:recipient_list' %}">Отмена</a>
+                        <a class="btn btn-outline-primary" href="{% url 'newsletter:newsletter_list' %}">Отмена</a>
                     </div>
 
                 </div>

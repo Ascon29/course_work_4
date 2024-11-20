@@ -1,6 +1,6 @@
 from django.forms import ModelForm
 
-from newsletter.models import Recipient, Message
+from newsletter.models import Recipient, Message, NewsLetter
 
 
 class RecipientForm(ModelForm):
@@ -13,3 +13,9 @@ class MessageForm(ModelForm):
     class Meta:
         model = Message
         fields = '__all__'
+
+
+class NewsletterForm(ModelForm):
+    class Meta:
+        model = NewsLetter
+        fields = ['message', 'recipient']

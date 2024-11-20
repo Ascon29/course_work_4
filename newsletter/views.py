@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, TemplateView
 
-from newsletter.forms import RecipientForm, MessageForm
+from newsletter.forms import RecipientForm, MessageForm, NewsletterForm
 from newsletter.models import Recipient, Message, NewsLetter
 
 
@@ -65,27 +65,26 @@ class MessageDeleteView(DeleteView):
 
 # Контроллеры CRUD для рассылок ---------------------------------
 
-class NewsLetterListView(ListView):
+class NewsletterListView(ListView):
     model = NewsLetter
 
 
-class NewsLetterDetailView(DetailView):
+class NewsletterDetailView(DetailView):
     model = NewsLetter
 
 
-class NewsLetterCreateView(CreateView):
+class NewsletterCreateView(CreateView):
     model = NewsLetter
-    fields = ('message', 'recipient')
+    form_class = NewsletterForm
     success_url = reverse_lazy('newsletter:newsletter_list')
 
 
-class NewsLetterUpdateView(UpdateView):
+class NewsletterUpdateView(UpdateView):
     model = NewsLetter
-    fields = ('message', 'recipient')
+    form_class = NewsletterForm
     success_url = reverse_lazy('newsletter:newsletter_list')
 
 
-class NewsLetterDeleteView(DeleteView):
+class NewsletterDeleteView(DeleteView):
     model = NewsLetter
-    fields = ('message', 'recipient')
     success_url = reverse_lazy('newsletter:newsletter_list')
