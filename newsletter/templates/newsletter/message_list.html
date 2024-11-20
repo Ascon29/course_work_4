@@ -1,0 +1,36 @@
+{% extends 'newsletter/base.html' %}
+
+{% block content %}
+
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+  <h1>Сообщения</h1>
+</div>
+<div class="container">
+    <div class="container mb-5">
+        <a class="btn btn-lg btn-block btn-outline-primary" href="{% url 'newsletter:message_create' %}">Создать
+            сообщение</a>
+    </div>
+    <div class="row text-center">
+        {% for message in object_list %}
+        <div class="col-3">
+            <div class="card mb-4 box-shadow">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal">{{ message.head }}</h4>
+                </div>
+                <div class="card-body">
+                    <ul class="list-unstyled mt-3 mb-4 text-start m-3">
+                        <li>- {{ message.body|truncatechars:100 }}</li>
+                    </ul>
+                    <a class="btn btn-lg btn-block btn-outline-primary"
+                       href="{% url 'newsletter:message_detail' message.pk %}">Инофрмация</a>
+                    <a class="btn btn-lg btn-block btn-outline-primary"
+                       href="{% url 'newsletter:message_update' message.pk %}">Редактировать</a>
+                    <a class="btn btn-lg btn-block btn-outline-primary"
+                       href="{% url 'newsletter:message_delete' message.pk %}">Удалить</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

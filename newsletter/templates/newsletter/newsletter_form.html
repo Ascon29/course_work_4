@@ -1,0 +1,32 @@
+{% extends 'newsletter/base.html' %}
+{% block title %}Рассылка{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <form class="row" method="post" enctype="multipart/form-data">
+                <div class="card">
+                    <div class="card-body">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                    </div>
+                    <div class="mt-5 mb-2">
+                        <button type="submit" class="btn btn-primary">
+                            {% if object %}
+                            Сохранить
+                            {% else %}
+                            Создать
+                            {% endif %}
+                        </button>
+                        <a class="btn btn-outline-primary" href="{% url 'newsletter:newsletter_list' %}">Отмена</a>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

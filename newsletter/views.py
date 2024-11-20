@@ -1,8 +1,13 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, TemplateView
 
+from newsletter.forms import RecipientForm, MessageForm, NewsletterForm
 from newsletter.models import Recipient, Message, NewsLetter
+
+
+class MainPage(TemplateView):
+    template_name = 'newsletter/main_page.html'
 
 
 # Контроллеры CRUD для получателей ---------------------------------
@@ -16,7 +21,7 @@ class RecipientDetailView(DetailView):
 
 class RecipientCreateView(CreateView):
     model = Recipient
-    fields = ('email', 'name', 'comment')
+    form_class = RecipientForm
     success_url = reverse_lazy('newsletter:recipient_list')
 
 
@@ -43,13 +48,13 @@ class MessageDetailView(DetailView):
 
 class MessageCreateView(CreateView):
     model = Message
-    fields = ('head', 'body')
+    form_class = MessageForm
     success_url = reverse_lazy('newsletter:message_list')
 
 
 class MessageUpdateView(UpdateView):
     model = Message
-    fields = ('head', 'body')
+    form_class = MessageForm
     success_url = reverse_lazy('newsletter:message_list')
 
 
@@ -60,27 +65,26 @@ class MessageDeleteView(DeleteView):
 
 # Контроллеры CRUD для рассылок ---------------------------------
 
-class NewsLetterListView(ListView):
+class NewsletterListView(ListView):
     model = NewsLetter
 
 
-class NewsLetterDetailView(DetailView):
+class NewsletterDetailView(DetailView):
     model = NewsLetter
 
 
-class NewsLetterCreateView(CreateView):
+class NewsletterCreateView(CreateView):
     model = NewsLetter
-    fields = ('message', 'recipient')
+    form_class = NewsletterForm
     success_url = reverse_lazy('newsletter:newsletter_list')
 
 
-class NewsLetterUpdateView(UpdateView):
+class NewsletterUpdateView(UpdateView):
     model = NewsLetter
-    fields = ('message', 'recipient')
+    form_class = NewsletterForm
     success_url = reverse_lazy('newsletter:newsletter_list')
 
 
-class NewsLetterDeleteView(DeleteView):
+class NewsletterDeleteView(DeleteView):
     model = NewsLetter
-    fields = ('message', 'recipient')
     success_url = reverse_lazy('newsletter:newsletter_list')

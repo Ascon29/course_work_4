@@ -1,0 +1,18 @@
+{% extends 'newsletter/base.html' %}
+
+{% block title %}Информация о получателе{% endblock %}
+
+{% block content %}
+
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+    <h1>{{ recipient.name }}</h1>
+</div>
+<div class="container">
+    <p>Почта: {{ object.email }}</p>
+    <p>Комментарий: {{ object.comment }}</p>
+    <a class="btn btn-lg btn-block btn-outline-primary" href="{% url 'newsletter:recipient_list' %}">Назад</a>
+    <a class="btn btn-lg btn-block btn-outline-primary" href="{% url 'newsletter:recipient_update' recipient.pk %}">Редактировать</a>
+    <a class="btn btn-lg btn-block btn-outline-primary" href="{% url 'newsletter:recipient_delete' recipient.pk %}">Удалить</a>
+</div>
+
+{% endblock %}
