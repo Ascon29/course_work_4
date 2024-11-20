@@ -1,8 +1,13 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, TemplateView
 
+from newsletter.forms import RecipientForm
 from newsletter.models import Recipient, Message, NewsLetter
+
+
+class MainPage(TemplateView):
+    template_name = 'newsletter/main_page.html'
 
 
 # Контроллеры CRUD для получателей ---------------------------------
@@ -16,7 +21,7 @@ class RecipientDetailView(DetailView):
 
 class RecipientCreateView(CreateView):
     model = Recipient
-    fields = ('email', 'name', 'comment')
+    form_class = RecipientForm
     success_url = reverse_lazy('newsletter:recipient_list')
 
 

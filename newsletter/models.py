@@ -58,7 +58,7 @@ class Attempt(models.Model):
     )
 
     date_of_attempt = models.DateTimeField(auto_now=True, verbose_name='Дата и время попытки рассылки')
-    status = models.CharField(choices=STATUS_CHOICES, default='created', verbose_name='Статус попытки рассылки')
+    status = models.CharField(choices=STATUS_CHOICES, default='successful', verbose_name='Статус попытки рассылки')
     mail_server_response = models.TextField(verbose_name='Ответ почтового сервера')
     newsletter = models.ForeignKey(NewsLetter, on_delete=models.CASCADE, verbose_name='Рассылка')
 
