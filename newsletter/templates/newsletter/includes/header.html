@@ -6,7 +6,7 @@
         <a class="p-2 btn btn-outline-primary" href="/">Главная</a>
         {% if user.is_authenticated %}
         <a class="p-2 btn btn-outline-primary" href="{% url 'newsletter:recipient_list'%}">Получатели</a>
-        <a class="p-2 btn btn-outline-primary" href="#">Сообщения</a>
+        <a class="p-2 btn btn-outline-primary" href="{% url 'newsletter:message_list'%}">Сообщения</a>
         <a class="p-2 btn btn-outline-primary" href="#">Рассылки</a>
 
         <form method="post" action="#" style="display: inline">
