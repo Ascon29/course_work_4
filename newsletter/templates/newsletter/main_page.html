@@ -2,6 +2,13 @@
 
 {% block content %}
 
-
+<div class="container">
+    <div class="container mt-3">
+        <h1 class="my-0 font-weight-normal text-center">Информация по рассылкам</h1>
+        <h4 class="my-0 font-weight-normal mt-3">Все рассылки: {{newsletter_all|length}}</h4>
+        <h4 class="my-0 font-weight-normal mt-3">Активные рассылки: {{newsletter_active|length}}</h4>
+        <h4 class="my-0 font-weight-normal mt-3">Уникальные получатели: {{recipient_all|length}}</h4>
+    </div>
+</div>
 
 {% endblock %}

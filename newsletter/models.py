@@ -11,8 +11,8 @@ class Recipient(models.Model):
         return self.name
 
     class Meta:
-        verbose_name = 'Пользователь'
-        verbose_name_plural = 'Пользователи'
+        verbose_name = 'Получатель'
+        verbose_name_plural = 'Получатели'
         ordering = ['name']
 
 
@@ -32,13 +32,16 @@ class Message(models.Model):
 
 # Модель «Рассылка»
 class NewsLetter(models.Model):
+    CREATED = 'Создана'
+    START = 'Запущена'
+    END = 'Завершена'
     STATUS_CHOICES = (
-        ('end', 'Завершена'), ('created', 'Создана'), ('start', 'Запущена')
+        (END, 'Завершена'), (CREATED, 'Создана'), (START, 'Запущена')
     )
 
     date_of_first_shipment = models.DateTimeField(auto_now_add=True, verbose_name='Дата и время начала рассылки')
-    date_of_end_shipment = models.DateTimeField(auto_now=True, verbose_name='Дата и время окончания рассылки')
-    status = models.CharField(choices=STATUS_CHOICES, default='created', verbose_name='Статус рассылки')
+    date_of_end_shipment = models.DateTimeField(verbose_name='Дата и время окончания рассылки', blank=True, null=True)
+    status = models.CharField(choices=STATUS_CHOICES, default=CREATED, verbose_name='Статус рассылки')
     message = models.ForeignKey(Message, on_delete=models.CASCADE, verbose_name='Сообщение')
     recipient = models.ManyToManyField(Recipient, verbose_name='Получатель')
 
@@ -48,24 +51,26 @@ class NewsLetter(models.Model):
     class Meta:
         verbose_name = 'Рассылка'
         verbose_name_plural = 'Рассылки'
-        ordering = ['status']
+        ordering = ['status', 'message']
 
 
 # Модель «Попытка рассылки»
 class Attempt(models.Model):
+    SUCCESS = 'Успешно'
+    NOT_SUCCESS = 'Не успешно'
     STATUS_CHOICES = (
-        ('successful', 'Успешно'), ('not successful', 'Не успешно')
+        (SUCCESS, 'Успешно'), (NOT_SUCCESS, 'Не успешно')
     )
 
     date_of_attempt = models.DateTimeField(auto_now=True, verbose_name='Дата и время попытки рассылки')
-    status = models.CharField(choices=STATUS_CHOICES, default='successful', verbose_name='Статус попытки рассылки')
+    status = models.CharField(choices=STATUS_CHOICES, default=SUCCESS, verbose_name='Статус попытки рассылки')
     mail_server_response = models.TextField(verbose_name='Ответ почтового сервера')
     newsletter = models.ForeignKey(NewsLetter, on_delete=models.CASCADE, verbose_name='Рассылка')
 
     def __str__(self):
-        return self.status
+        return self.newsletter, self.mail_server_response, self.status
 
     class Meta:
         verbose_name = 'Попытка рассылки'
         verbose_name_plural = 'Попытки рассылки'
-        ordering = ['status']
+        ordering = ['status', 'newsletter', 'date_of_attempt']
