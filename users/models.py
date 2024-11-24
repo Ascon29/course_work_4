@@ -26,7 +26,9 @@ class User(AbstractUser):
         null=True,
         help_text="Укажите вашу страну",
     )
-    token = models.CharField(max_length=100, blank=True, null=True, verbose_name="Токен пользователя")
+    token = models.CharField(
+        max_length=100, blank=True, null=True, verbose_name="Токен пользователя"
+    )
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
@@ -34,6 +36,7 @@ class User(AbstractUser):
     class Meta:
         verbose_name = ("Пользователь",)
         verbose_name_plural = "Пользователи"
+        permissions = [('can_ban_user', 'can ban user'),]
 
     def __str__(self):
         return self.email

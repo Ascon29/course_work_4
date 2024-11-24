@@ -7,6 +7,7 @@
 <div class="container">
     <p>Тема: {{ object.body }}</p>
     <p>Сообщение: {{ object.head }}</p>
+    <p>Пользователь: {{ object.owner }}</p>
     <a class="btn btn-lg btn-block btn-outline-primary" href="{% url 'newsletter:message_list' %}">Назад</a>
     <a class="btn btn-lg btn-block btn-outline-primary" href="{% url 'newsletter:message_update' message.pk %}">Редактировать</a>
     <a class="btn btn-lg btn-block btn-outline-primary" href="{% url 'newsletter:message_delete' message.pk %}">Удалить</a>

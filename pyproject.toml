@@ -12,6 +12,7 @@ psycopg2-binary = "^2.9.10"
 pillow = "^11.0.0"
 ipython = "^8.28.0"
 python-dotenv = "^1.0.1"
+redis = "^5.2.0"
 
 
 [tool.poetry.group.lint.dependencies]
