@@ -46,9 +46,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name="newsletter",
             name="date_of_end_shipment",
-            field=models.DateTimeField(
-                blank=True, null=True, verbose_name="Дата и время окончания рассылки"
-            ),
+            field=models.DateTimeField(blank=True, null=True, verbose_name="Дата и время окончания рассылки"),
         ),
         migrations.AlterField(
             model_name="newsletter",

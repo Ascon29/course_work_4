@@ -34,13 +34,10 @@ class NewsLetterAdmin(admin.ModelAdmin):
 
 
 @admin.register(Attempt)
-class NewsLetterAdmin(admin.ModelAdmin):
+class AttemptAdmin(admin.ModelAdmin):
     list_display = (
-        "id",
         "date_of_attempt",
         "status",
         "mail_server_response",
         "newsletter",
     )
-    list_filter = ("status", "newsletter")
-    search_fields = ("status", "newsletter")

@@ -1,5 +1,5 @@
 {% extends 'newsletter/base.html' %}
-
+{% load my_tags %}
 {% block title %}Информация о пользователе{% endblock %}
 
 {% block content %}
@@ -8,6 +8,7 @@
     <h1>{{ user }}</h1>
 </div>
 <div class="container">
+    <img src="{{ object.avatar | media_filter }}" width="15%">
     <p>Почта: {{ user.email }}</p>
     <p>Телефон: {{ user.phone_number }}</p>
     <p>Страна: {{ user.country }}</p>

@@ -19,16 +19,16 @@ from newsletter.views import (
     NewsletterDeleteView,
     NewsletterUpdateView,
     NewsletterDetailView,
-    AttemptListView, FinishNewsletterView, start_newsletter,
+    AttemptListView,
+    start_newsletter,
+    finish_newsletter,
 )
 
 app_name = NewsletterConfig.name
 
 urlpatterns = [
-    path("", cache_page(10)(MainPage.as_view()), name="main_page"),
-    path(
-        "newsletter/recipient_list/", RecipientListView.as_view(), name="recipient_list"
-    ),
+    path("", MainPage.as_view(), name="main_page"),
+    path("newsletter/recipient_list/", RecipientListView.as_view(), name="recipient_list"),
     path(
         "newsletter/recipient_create/",
         RecipientCreateView.as_view(),
@@ -46,13 +46,11 @@ urlpatterns = [
     ),
     path(
         "newsletter/recipient_detail/<int:pk>/",
-        RecipientDetailView.as_view(),
+        cache_page(10)(RecipientDetailView.as_view()),
         name="recipient_detail",
     ),
     path("newsletter/message_list/", MessageListView.as_view(), name="message_list"),
-    path(
-        "newsletter/message_create/", MessageCreateView.as_view(), name="message_create"
-    ),
+    path("newsletter/message_create/", MessageCreateView.as_view(), name="message_create"),
     path(
         "newsletter/message_delete/<int:pk>/",
         MessageDeleteView.as_view(),
@@ -65,7 +63,7 @@ urlpatterns = [
     ),
     path(
         "newsletter/message_detail/<int:pk>/",
-        MessageDetailView.as_view(),
+        cache_page(10)(MessageDetailView.as_view()),
         name="message_detail",
     ),
     path(
@@ -90,11 +88,10 @@ urlpatterns = [
     ),
     path(
         "newsletter/newsletter_detail/<int:pk>/",
-        NewsletterDetailView.as_view(),
+        cache_page(10)(NewsletterDetailView.as_view()),
         name="newsletter_detail",
     ),
     path("newsletter/attempt_list/", AttemptListView.as_view(), name="attempt_list"),
-
-    path("finish_newsletter/<int:pk>/", FinishNewsletterView.as_view(), name="finish_newsletter"),
+    path("finish_newsletter/<int:pk>/", finish_newsletter, name="finish_newsletter"),
     path("start_newsletter/<int:pk>/", start_newsletter, name="start_newsletter"),
 ]

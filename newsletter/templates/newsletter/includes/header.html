@@ -8,6 +8,7 @@
         <a class="p-2 btn btn-outline-primary" href="{% url 'newsletter:recipient_list'%}">Получатели</a>
         <a class="p-2 btn btn-outline-primary" href="{% url 'newsletter:message_list'%}">Сообщения</a>
         <a class="p-2 btn btn-outline-primary" href="{% url 'newsletter:newsletter_list'%}">Рассылки</a>
+        <a class="p-2 btn btn-outline-primary" href="{% url 'users:user_profile' user.pk%}">Мой профиль</a>
 
         {% if 'users.view_user' in perms %}
         <a class="p-2 btn btn-outline-primary" href="{% url 'users:user_list'%}">Пользователи</a>

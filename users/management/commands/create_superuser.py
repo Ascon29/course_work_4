@@ -4,6 +4,8 @@ from users.models import User
 
 
 class Command(BaseCommand):
+    """Команда для создания Админа через консоль"""
+
     def handle(self, *args, **options):
         user = User.objects.create(email="admin1@example.com")
         user.set_password("123")

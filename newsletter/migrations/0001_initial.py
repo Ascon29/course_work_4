@@ -33,9 +33,7 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "body",
-                    models.TextField(
-                        help_text="Введите сообщение", verbose_name="Сообщение"
-                    ),
+                    models.TextField(help_text="Введите сообщение", verbose_name="Сообщение"),
                 ),
             ],
             options={
@@ -103,15 +101,11 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "date_of_first_shipment",
-                    models.DateTimeField(
-                        auto_now_add=True, verbose_name="Дата и время начала рассылки"
-                    ),
+                    models.DateTimeField(auto_now_add=True, verbose_name="Дата и время начала рассылки"),
                 ),
                 (
                     "date_of_end_shipment",
-                    models.DateTimeField(
-                        auto_now=True, verbose_name="Дата и время окончания рассылки"
-                    ),
+                    models.DateTimeField(auto_now=True, verbose_name="Дата и время окончания рассылки"),
                 ),
                 (
                     "status",
@@ -135,9 +129,7 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "recipient",
-                    models.ManyToManyField(
-                        to="newsletter.recipient", verbose_name="Получатель"
-                    ),
+                    models.ManyToManyField(to="newsletter.recipient", verbose_name="Получатель"),
                 ),
             ],
             options={
@@ -160,9 +152,7 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "date_of_attempt",
-                    models.DateTimeField(
-                        auto_now=True, verbose_name="Дата и время попытки рассылки"
-                    ),
+                    models.DateTimeField(auto_now=True, verbose_name="Дата и время попытки рассылки"),
                 ),
                 (
                     "status",

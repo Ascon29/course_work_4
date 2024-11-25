@@ -5,6 +5,8 @@ from config import settings
 
 
 class Command(BaseCommand):
+    """Кастомная команда для отправки рассылки через консоль"""
+
     def handle(self, *args, **options):
         head = input("Тема письма: ")
         body = input("Сообщение: ")

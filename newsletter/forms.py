@@ -4,6 +4,8 @@ from newsletter.models import Recipient, Message, NewsLetter
 
 
 class StyleForm:
+    """Класс миксин для подключения стилей"""
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for field_name, field in self.fields.items():
@@ -14,18 +16,24 @@ class StyleForm:
 
 
 class RecipientForm(StyleForm, ModelForm):
+    """Форма для создания получателя"""
+
     class Meta:
         model = Recipient
-        exclude = ['owner']
+        exclude = ["owner"]
 
 
 class MessageForm(StyleForm, ModelForm):
+    """Форма для создания сообщения"""
+
     class Meta:
         model = Message
-        exclude = ['owner']
+        exclude = ["owner"]
 
 
 class NewsletterForm(StyleForm, ModelForm):
+    """Форма для создания рассылки"""
+
     class Meta:
         model = NewsLetter
-        exclude = ['owner', 'status']
+        exclude = ["owner", "status"]

@@ -5,9 +5,11 @@ from newsletter.models import Recipient, Message, NewsLetter, Attempt
 
 
 def get_recipients_from_cache():
+    """Функция кэширования списка пользователей"""
+
     if not CACHE_ENABLED:
         return Recipient.objects.all()
-    key = 'recipient_list'
+    key = "recipient_list"
     recipients = cache.get(key)
     if recipients is not None:
         return recipients
@@ -17,9 +19,11 @@ def get_recipients_from_cache():
 
 
 def get_messages_from_cache():
+    """Функция кэширования списка сообщений"""
+
     if not CACHE_ENABLED:
         return Message.objects.all()
-    key = 'message_list'
+    key = "message_list"
     messages = cache.get(key)
     if messages is not None:
         return messages
@@ -29,9 +33,11 @@ def get_messages_from_cache():
 
 
 def get_newsletters_from_cache():
+    """Функция кэширования списка рассылок"""
+
     if not CACHE_ENABLED:
         return NewsLetter.objects.all()
-    key = 'newsletter_list'
+    key = "newsletter_list"
     newsletters = cache.get(key)
     if newsletters is not None:
         return newsletters
@@ -41,9 +47,11 @@ def get_newsletters_from_cache():
 
 
 def get_attempts_from_cache():
+    """Функция кэширования списка попыток рассылок"""
+
     if not CACHE_ENABLED:
         return Attempt.objects.all()
-    key = 'attempt_list'
+    key = "attempt_list"
     attempts = cache.get(key)
     if attempts is not None:
         return attempts
