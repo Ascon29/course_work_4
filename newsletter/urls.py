@@ -27,7 +27,7 @@ from newsletter.views import (
 app_name = NewsletterConfig.name
 
 urlpatterns = [
-    path("", MainPage.as_view(), name="main_page"),
+    path("", cache_page(10)(MainPage.as_view()), name="main_page"),
     path("newsletter/recipient_list/", RecipientListView.as_view(), name="recipient_list"),
     path(
         "newsletter/recipient_create/",
