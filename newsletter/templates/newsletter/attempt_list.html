@@ -1,0 +1,29 @@
+{% extends 'newsletter/base.html' %}
+
+{% block content %}
+
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+    <h1>Отчетность о рассылках</h1>
+</div>
+
+<div class="row text-center">
+    {% for attempt in object_list %}
+    <div class="col-3">
+        <div class="card mb-4 box-shadow">
+            <div class="card-header">
+                <h4 class="my-0 font-weight-normal">Рассылка: {{attempt.newsletter.message.head}}</h4>
+            </div>
+            <div class="card-body">
+                <ul class="list-unstyled mt-3 mb-4 text-start m-3">
+                    <li>Ответ сервера: {{attempt.mail_server_response}}</li>
+                    <li>Дата рассылки: {{attempt.date_of_attempt}}</li>
+                    <li>Статус: {{attempt.status}}</li>
+                    <li>Владелец: {{attempt.owner}}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

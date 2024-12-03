@@ -8,14 +8,21 @@
         <a class="p-2 btn btn-outline-primary" href="{% url 'newsletter:recipient_list'%}">Получатели</a>
         <a class="p-2 btn btn-outline-primary" href="{% url 'newsletter:message_list'%}">Сообщения</a>
         <a class="p-2 btn btn-outline-primary" href="{% url 'newsletter:newsletter_list'%}">Рассылки</a>
+        <a class="p-2 btn btn-outline-primary" href="{% url 'users:user_profile' user.pk%}">Мой профиль</a>
 
-        <form method="post" action="#" style="display: inline">
+        {% if 'users.view_user' in perms %}
+        <a class="p-2 btn btn-outline-primary" href="{% url 'users:user_list'%}">Пользователи</a>
+        {% endif %}
+
+        <a class="p-2 btn btn-outline-primary" href="{% url 'newsletter:attempt_list'%}">Отчетность</a>
+
+        <form method="post" action="{% url 'users:logout' %}" style="display: inline">
             {% csrf_token %}
             <button type="submit" class="p-2 btn btn-outline-primary">Выйти</button>
         </form>
         {% else %}
-        <a class="p-2 btn btn-outline-primary" href="#">Регистрация</a>
-        <a class="p-2 btn btn-outline-primary" href="#">Вход</a>
+        <a class="p-2 btn btn-outline-primary" href="{% url 'users:register' %}">Регистрация</a>
+        <a class="p-2 btn btn-outline-primary" href="{% url 'users:login' %}">Вход</a>
         {% endif %}
     </nav>
 </div>

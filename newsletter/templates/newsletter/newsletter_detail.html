@@ -6,12 +6,28 @@
 
 <div class="container">
     <p>Сообщение: {{ object.message }}</p>
-    <p>Получатели: {{ object.recipient }}</p>
-    <p>Создана: {{ object.date_of_first_shipment }}</p>
-    <p>Окончание рассылки: {{ object.date_of_end_shipment }}</p>
+    <p>Статус: {{ object.status }}</p>
+    <p>Дата создания: {{ object.date_of_first_shipment }}</p>
+    <p>Дата окончания: {{ object.date_of_end_shipment }}</p>
+    <p>Пользователь: {{ object.owner }}</p>
     <a class="btn btn-lg btn-block btn-outline-primary" href="{% url 'newsletter:newsletter_list' %}">Назад</a>
+
+    {% if newsletter.owner == user %}
     <a class="btn btn-lg btn-block btn-outline-primary" href="{% url 'newsletter:newsletter_update' newsletter.pk %}">Редактировать</a>
     <a class="btn btn-lg btn-block btn-outline-primary" href="{% url 'newsletter:newsletter_delete' newsletter.pk %}">Удалить</a>
+    {% if object.status == 'Завершена' or object.status == 'Создана' %}
+    <a class="btn btn-lg btn-block btn-outline-primary" href="{% url 'newsletter:start_newsletter' newsletter.pk %}">Запустить</a>
+    {% endif %}
+    {% endif %}
+
+    {% if 'newsletter.can_stop_newsletter' in perms or newsletter.owner == user %}
+    <form action="{% url 'newsletter:finish_newsletter' newsletter.pk %}" method="post">
+        {% csrf_token %}
+        {% if object.status == 'Запущена' %}
+        <button class="btn btn-lg btn-block btn-outline-primary" type="submit">Завершить</button>
+        {% endif %}
+    </form>
+    {% endif %}
 </div>
 
 {% endblock %}

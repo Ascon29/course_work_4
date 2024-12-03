@@ -1,0 +1,19 @@
+{% extends 'newsletter/base.html' %}
+{% load my_tags %}
+{% block title %}Мой профиль{% endblock %}
+
+{% block content %}
+
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+    <h1>Мой профиль</h1>
+</div>
+<div class="container">
+    <img src="{{ object.avatar | media_filter }}" width="15%">
+    <p>Почта: {{ user.email }}</p>
+    <p>Телефон: {{ user.phone_number }}</p>
+    <p>Страна: {{ user.country }}</p>
+    <p>Заблокирован: {% if user.is_active %}Нет{% else %}Да{% endif %}</p>
+    <a class="btn btn-lg btn-block btn-outline-primary" href="{% url 'users:user_update' user.pk %}">Редактировать</a>
+</div>
+
+{% endblock %}
